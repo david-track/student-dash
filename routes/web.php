@@ -45,4 +45,22 @@ Route::get("/index", function () {
     return view("index");
 });
 
+Route::get("/resources", function () {
+    return view("resources");
+})
+    ->middleware(["auth", "verified"])
+    ->name("resources");
+
+Route::get("/grades", function () {
+    return view("gradesandcerts");
+})
+    ->middleware(["auth", "verified"])
+    ->name("grades");
+
+Route::get("/assignments", function () {
+    return view("assignments");
+})
+    ->middleware(["auth", "verified"])
+    ->name("assignments");
+
 require __DIR__ . "/auth.php";
