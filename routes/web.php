@@ -20,9 +20,9 @@ Route::get("/welcome", function () {
     return view("welcome");
 });
 
-Route::get("/", function () {
-    return view("auth/login");
-});
+// Route::get("/", function () {
+//     return view("auth/login");
+// });
 
 // Route::get("/dashboard", function () {
 //     return view("dashboard");
@@ -44,11 +44,11 @@ Route::middleware("auth")->group(function () {
 
 //Eigen routes
 
-Route::get("/dashboard", [DashboardController::class, "show"])
+Route::get("/", [DashboardController::class, "show"])
 ->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get("/index", [StudentController::class, "showAllStudents"])
-->middleware(['auth', 'verified'])->name('index');
+Route::get("/dashboard", [StudentController::class, "showAllStudents"])
+->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::get("/resources", function () {
