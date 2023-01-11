@@ -24,11 +24,11 @@ Route::get("/", function () {
     return view("auth/login");
 });
 
-Route::get("/dashboard", function () {
-    return view("dashboard");
-})
-    ->middleware(["auth", "verified"])
-    ->name("dashboard");
+// Route::get("/dashboard", function () {
+//     return view("dashboard");
+// })
+//     ->middleware(["auth", "verified"])
+//     ->name("dashboard");
 
 Route::middleware("auth")->group(function () {
     Route::get("/profile", [ProfileController::class, "edit"])->name(
@@ -44,7 +44,7 @@ Route::middleware("auth")->group(function () {
 
 //Eigen routes
 
-Route::get("/", [DashboardController::class, "show"])
+Route::get("/dashboard", [DashboardController::class, "show"])
 ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get("/index", [StudentController::class, "showAllStudents"])
@@ -68,5 +68,8 @@ Route::get("/assignments", function () {
 })
     ->middleware(["auth", "verified"])
     ->name("assignments");
+
+Route::post("/student/create", [StudentController::class, "store"]);
+
 
 require __DIR__ . "/auth.php";

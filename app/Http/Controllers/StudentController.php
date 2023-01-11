@@ -36,7 +36,13 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $student = new Student();
+        $student->first_name = request("first_name");
+        $student->last_name = request("last_name");
+        $student->email = request("email");
+        $student->save();
+        
+        return redirect("dashboard");
     }
 
     /**
@@ -90,7 +96,7 @@ class StudentController extends Controller
 
     public function showAllStudents() {
         $students = $this->getAllStudents();
-        return view("index", compact(["students"]));
+        return view("dashboard", compact(["students"]));
     }
 
 }
